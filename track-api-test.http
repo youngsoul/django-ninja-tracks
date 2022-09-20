@@ -1,0 +1,32 @@
+### get
+GET http://localhost:8000/api/tracks
+Content-Type: application/json
+
+
+### create
+POST http://localhost:8000/api/tracks
+Content-Type: application/json
+
+{
+  "artist": "Better with Bacon",
+  "title": "Sonic Hog",
+  "duration": 666,
+  "last_play": "2022-01-01 06:06:06"
+}
+
+### update
+PUT http://localhost:8000/api/tracks/7725
+Content-Type: application/json
+
+{
+  "artist": "Better with Bacon",
+  "title": "Little Johnny",
+  "duration": 666,
+  "last_play": "2022-01-01 06:06:06"
+}
+
+### delete
+DELETE http://localhost:8000/api/tracks/7725
+Content-Type: application/json
+
+

@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  django-web-service:
+    build: .
+    container_name: 'django-ninja-tracks-web'
+    labels:
+      description: "what does this django service do"
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - ./.env.docker
+    volumes:
+      - .:/code
+
+  django-db-service:
+      image: postgres:14.2
+      container_name: 'pg14-ninja-tracks-db'
+      labels:
+        description: 'what data does this db hold'
+      volumes:
+        - pg_django_data:/var/lib/postgresql/data/
+      command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c max_connections=200
+      env_file:
+        - ./.env.docker
+      ports:
+        - "5432:5432"
+      expose:
+        - "5432"
+
+volumes:
+  pg_django_data:
